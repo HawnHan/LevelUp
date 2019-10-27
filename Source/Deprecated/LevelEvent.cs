@@ -7,14 +7,8 @@ using Verse.Sound;
 
 namespace LevelUp
 {
-    class LevelEvent
+    public class LevelEvent
     {
-        public enum LevelEventType
-        {
-            LevelUp,
-            LevelDown
-        }
-
         public LevelEvent(Pawn pawn, SkillRecord skillRecord, LevelEventType levelType)
         {
             CurrentPawn = pawn;
@@ -22,8 +16,8 @@ namespace LevelUp
             LevelType = levelType;
         }
 
-        Pawn CurrentPawn { get; set; }
-        SkillRecord SkillRecord { get; set; }
+        private Pawn CurrentPawn { get; set; }
+        private SkillRecord SkillRecord { get; set; }
         public LevelEventType LevelType { get; set; }
         public static Queue<LevelEvent> LevelEventQueue { get; } = new Queue<LevelEvent>();
         public static Dictionary<Pawn, Dictionary<SkillDef, int>> LevelRecord { get; } = new Dictionary<Pawn, Dictionary<SkillDef, int>>();
@@ -160,7 +154,7 @@ namespace LevelUp
         }
 
         // Make basic setup of level up motes.
-        MoteThrown MakeMote(ThingDef def, Pawn pawn)
+        private MoteThrown MakeMote(ThingDef def, Pawn pawn)
         {
             MoteThrown mote = (MoteThrown)ThingMaker.MakeThing(def);
             mote.Attach(new TargetInfo(pawn));

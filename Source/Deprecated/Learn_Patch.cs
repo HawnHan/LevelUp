@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Harmony;
 using RimWorld;
-using static_quality_plus;
+//using static_quality_plus;
 using Verse;
 using static LevelUp.LevelEvent;
 
@@ -30,7 +30,7 @@ namespace LevelUp
                 .Where(mod => mod.Active)
                 .Select(mod => mod.Name)
                 .Any(mod => mod.StartsWith("Static Quality Plus", StringComparison.OrdinalIgnoreCase));
-
+            /*
             if (isStaticQualityPlusActive)
             {
                 Type originalType = null;
@@ -64,6 +64,11 @@ namespace LevelUp
                 prefix = AccessTools.Method(typeof(Learn_Patch), "Prefix");
                 postfix = AccessTools.Method(typeof(Learn_Patch), "Postfix");
             }
+            */
+
+            original = AccessTools.Method(typeof(SkillRecord), "Learn", new[] { typeof(float), typeof(bool) });
+            prefix = AccessTools.Method(typeof(Learn_Patch), "Prefix");
+            postfix = AccessTools.Method(typeof(Learn_Patch), "Postfix");
 
             harmony.Patch(original, new HarmonyMethod(prefix), new HarmonyMethod(postfix));
         }
@@ -73,13 +78,13 @@ namespace LevelUp
         {
             __state = _this.levelInt;
         }
-
+        /*
         // Repackages variables from SQP detour and sends on to regular postfix.
         private static void Postfix_SQP(int __state, SkillRecord _this)
         {
             Postfix(__state, _this.levelInt, _this.GetPawn(), _this);
         }
-
+        */
         // Prefix passes the value of skill level before level change.
         private static void Prefix(out int __state, int ___levelInt)
         {

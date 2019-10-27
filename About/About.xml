@@ -5,5 +5,5 @@
   <supportedVersions>
     <li>1.0</li>
   </supportedVersions>
-  <description>&lt;b&gt;Get notified when pawns level up!&lt;/b&gt;</description>
+  <description><![CDATA[<b>Get notified when pawns level up!</b>]]></description>
 </ModMetaData>

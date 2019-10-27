@@ -3,7 +3,7 @@ using static LevelUp.DefHandler;
 
 namespace LevelUp
 {
-    class Settings : ModSettings
+    public class Settings : ModSettings
     {
         public override void ExposeData()
         {

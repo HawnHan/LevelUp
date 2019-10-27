@@ -5,24 +5,14 @@ using Verse.Sound;
 
 namespace LevelUp
 {
-    class ModHandler : Mod
+    public class ModSettingsWindow : IModSettingsWindow
     {
-        public ModHandler(ModContentPack content) : base(content)
+        private static string editBuffer;
+
+        public void Draw(Rect rect)
         {
-            settings = GetSettings<Settings>();
-        }
-
-        public static Settings settings;
-
-        public override string SettingsCategory() => "LevelUp";
-
-        static string editBuffer;
-
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            base.DoSettingsWindowContents(inRect);
             Listing_Standard view = new Listing_Standard();
-            view.Begin(inRect);
+            view.Begin(rect);
             view.ColumnWidth = 220f;
 
             view.Label("LevelUpSettingsLabel".Translate());

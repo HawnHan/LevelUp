@@ -14,11 +14,12 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Program Files %28x86%29\Steam\steamapps\common\RimWorld\Mods\LevelUp\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>obj\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -31,39 +32,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Lib.Harmony.1.2.0.1\lib\net35\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="static_quality_plus">
-      <HintPath>bin\Debug\static_quality_plus.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\DefHandler.cs" />
-    <Compile Include="Source\Extensions.cs" />
-    <Compile Include="Source\Learn_Patch.cs" />
-    <Compile Include="Source\LevelEvent.cs" />
-    <Compile Include="Source\Controller.cs" />
+    <Compile Include="Source\BindingsConfiguration.cs" />
+    <Compile Include="Source\Deprecated\DefHandler.cs" />
+    <Compile Include="Source\Deprecated\Extensions.cs" />
+    <Compile Include="Source\Deprecated\Learn_Patch.cs" />
+    <Compile Include="Source\Deprecated\LevelEvent.cs" />
+    <Compile Include="Source\Deprecated\Controller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\ModHandler.cs" />
-    <Compile Include="Source\Settings.cs" />
+    <Compile Include="Source\Deprecated\LevelEventType.cs" />
+    <Compile Include="Source\Deprecated\ModHandler.cs" />
+    <Compile Include="Source\Deprecated\Settings.cs" />
+    <Compile Include="Source\Engine.cs" />
+    <Compile Include="Source\IModSettingsWindow.cs" />
+    <Compile Include="Source\ModSettingsWindow.cs" />
+    <Compile Include="Source\Provider.cs" />
+    <Compile Include="Source\ServiceConfigurator.cs" />
+    <Compile Include="Source\ServiceSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="README.md" />
     <None Include="Sounds\LevelUp\LvlUp.ogg" />
   </ItemGroup>
@@ -88,13 +79,14 @@
     <Content Include="Textures\Things\Mote\LevelBeamMiddle.png" />
     <Content Include="Textures\Things\Mote\LevelBeamOuter.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1" />
+    <PackageReference Include="Ninject">
+      <Version>3.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Rimworld.Build">
+      <Version>1.0.2282</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>xcopy /i /s /y "$(SolutionDir)About" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\LevelUp\About\"
-xcopy /i /s /y "$(SolutionDir)Defs" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\LevelUp\Defs\"
-xcopy /i /s /y "$(SolutionDir)Languages" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\LevelUp\Languages\"
-xcopy /i /s /y "$(SolutionDir)Sounds" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\LevelUp\Sounds\"
-xcopy /i /s /y "$(SolutionDir)Textures" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\LevelUp\Textures\"</PreBuildEvent>
-  </PropertyGroup>
 </Project>
